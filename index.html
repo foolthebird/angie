@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Angie: My Best Friend</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -67,14 +65,18 @@
             margin-bottom: 40px;
         }
 
-        /* Polaroid Gallery Styling */
+        /* --- Polaroid Gallery Styling - UPDATED FOR PERFECT FIT --- */
         .polaroid {
             background: white;
-            padding: 15px 15px 45px 15px;
+            /* Added explicit aspect ratio for the whole polaroid for consistency */
+            aspect-ratio: 3 / 4; 
+            padding: 15px 15px 15px 15px; /* Unified padding */
             box-shadow: 0 10px 25px rgba(0,0,0,0.12);
             transform: rotate(-2deg);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
         }
 
         .polaroid:nth-child(even) {
@@ -89,7 +91,8 @@
 
         .polaroid-img {
             width: 100%;
-            height: 320px;
+            /* Changed height to aspect-ratio for a perfect square photo area */
+            aspect-ratio: 1 / 1; 
             background-color: #f3f3f3;
             overflow: hidden;
             border: 1px solid #eee;
@@ -99,8 +102,10 @@
         .polaroid-img img {
             width: 100%;
             height: 100%;
+            /* THIS IS THE MAGIC PROPERTY FOR PERFECT FITTING */
             object-fit: cover; 
-            object-position: center 20%;
+            /* This centers the image focus, good for portraits */
+            object-position: center center; 
             display: block;
             transition: transform 0.5s ease;
         }
@@ -113,262 +118,6 @@
             font-family: 'Dancing Script', cursive;
             text-align: center;
             font-size: 1.6rem;
-            margin-top: 20px;
-            color: #555;
-        }
-
-        /* Interactive Reason Generator */
-        #reason-box {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(255, 133, 162, 0.2);
-            text-align: center;
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .btn-custom {
-            background-color: var(--primary-pink);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(255, 133, 162, 0.3);
-        }
-
-        .btn-custom:hover {
-            background-color: #ff5e84;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 94, 132, 0.4);
-            color: white;
-        }
-
-        .certificate-container {
-            border: 12px double var(--primary-pink);
-            padding: 50px 30px;
-            background: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .footer {
-            padding: 40px 0;
-            text-align: center;
-            background: #fdf2f4;
-            color: #888;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            top: -10px;
-            z-index: 1000;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div id="heart-container"></div>
-        <div class="container hero-content">
-            <h1>Hi, Angie!</h1>
-            <p>I built this little corner of the internet just for you.</p>
-            <div class="mt-4">
-                <a href="#gallery" class="btn btn-light btn-lg rounded-pill px-5">Explore Our Memories</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- The "Why You're Great" Section -->
-    <section class="py-5" id="reasons">
-        <div class="container">
-            <h2 class="section-title">Why You're My Best Friend</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div id="reason-box">
-                        <h3 id="current-reason" class="mb-4">Click the button for a reminder!</h3>
-                        <div>
-                            <button onclick="generateReason()" class="btn btn-custom">Magic Button ✨</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Memory Gallery -->
-    <section class="py-5 bg-light" id="gallery">
-        <div class="container">
-            <h2 class="section-title">Favorite Moments</h2>
-            <div class="row mt-4">
-                <!-- Photo 1 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="polaroid">
-                        <div class="polaroid-img">
-                            <img src="angie/597529083_900727692519389_8519875557547164724_n.jpg" alt="Best Laughs">
-                        </div>
-                        <p class="card-caption">The best laughs</p>
-                    </div>
-                </div>
-                <!-- Photo 2 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="polaroid">
-                        <div class="polaroid-img">
-                            <img src="angie/639602948_761683183377427_6947431218377194012_n.jpg" alt="Adventure Day">
-                        </div>
-                        <p class="card-caption">Adventure Day</p>
-                    </div>
-                </div>
-                <!-- Photo 3 -->
-                <div class="col-md-4 col-sm-6">
-                    <div class="polaroid">
-                        <div class="polaroid-img">
-                            <img src="angie/640065900_3177935715719573_8216893586738298334_n.jpg" alt="Late Night">
-                        </div>
-                        <p class="card-caption">Late Night Talks</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Official Certificate -->
-    <section class="py-5">
-        <div class="container">
-            <div class="certificate-container shadow-lg">
-                <h4 class="text-uppercase tracking-widest mb-3" style="letter-spacing: 5px; color: #aaa;">Certificate of Awesome</h4>
-                <h2 class="my-4" style="font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--primary-pink);">Angie</h2>
-                <p class="lead">Is officially recognized as the</p>
-                <h3 class="fw-bold text-dark mb-4">WORLD'S BEST FRIEND</h3>
-                <hr class="my-4 mx-auto" style="width: 40%; height: 2px; background-color: var(--primary-pink); opacity: 0.3;">
-                <p class="px-3">Awarded for being supportive, hilarious, and overall the most incredible person to have as a friend.</p>
-                <div class="mt-5 d-flex justify-content-around">
-                    <div class="text-center">
-                        <p class="mb-0" style="border-bottom: 1px solid #ccc; width: 120px;">February 2024</p>
-                        <small class="text-muted text-uppercase">DATE</small>
-                    </div>
-                    <div class="text-center">
-                        <p class="mb-0" style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; border-bottom: 1px solid #ccc; width: 150px;">Your Bestie</p>
-                        <small class="text-muted text-uppercase">SIGNED</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Message Box -->
-    <section class="py-5 bg-white">
-        <div class="container text-center">
-            <h2 class="section-title">A Little Note</h2>
-            <p class="col-lg-8 mx-auto lead" style="line-height: 2; font-weight: 300;">
-                Dear Angie, thank you for being the person I can always count on. 
-                Whether we're doing something exciting or just hanging out, 
-                everything is better with you around. I'm so lucky to have you in my life!
-            </p>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p class="mb-1">Made with ❤️ just for Angie</p>
-            <p><small>&copy; 2024 Besties Forever</small></p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // Floating Hearts Logic
-        function createHeart() {
-            const container = document.getElementById('heart-container');
-            if (!container) return;
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '100vh';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            container.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-
-        setInterval(createHeart, 400);
-
-        // Reason Generator Logic
-        const reasons = [
-            "You always know how to make me laugh! 😂",
-            "You're an amazing listener. 👂✨",
-            "Your energy is contagious! ⚡",
-            "You give the best advice. 🧠",
-            "You're literally the kindest person I know. 🌸",
-            "We have the best inside jokes. 🙊",
-            "You're always there when things get tough. 💪",
-            "Your taste in music/movies is top-tier! 🍿",
-            "Because you're uniquely, wonderfully YOU! 🌟",
-            "You always celebrate my wins with me! 🥂"
-        ];
-
-        function generateReason() {
-            const reasonElement = document.getElementById('current-reason');
-            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
-            
-            reasonElement.style.opacity = 0;
-            
-            setTimeout(() => {
-                reasonElement.innerText = randomReason;
-                reasonElement.style.opacity = 1;
-                reasonElement.style.transition = 'opacity 0.5s ease';
-                triggerConfetti();
-            }, 300);
-        }
-
-        // Simple Confetti effect
-        function triggerConfetti() {
-            for (let i = 0; i < 35; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 70%)`;
-                confetti.style.width = Math.random() * 8 + 6 + 'px';
-                confetti.style.height = confetti.style.width;
-                confetti.style.borderRadius = i % 2 === 0 ? '50%' : '2px';
-                
-                document.body.appendChild(confetti);
-
-                const animation = confetti.animate([
-                    { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
-                    { transform: `translate3d(${(Math.random() - 0.5) * 300}px, 100vh, 0) rotate(${Math.random() * 1000}deg)`, opacity: 0 }
-                ], {
-                    duration: Math.random() * 2000 + 1500,
-                    easing: 'cubic-bezier(0.1, 0.8, 0.5, 1)'
-                });
-
-                animation.onfinish = () => confetti.remove();
-            }
-        }
-    </script>
-</body>
-</html>
+            /* Flex-grow ensures caption area takes remaining space and centers vertically */
+            flex-grow: 1; 
+            display:
